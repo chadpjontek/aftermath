@@ -1,22 +1,62 @@
+body {
+  background: black;
+  font-family: 'Work Sans', sans-serif;
+}
+
+button:hover,
+button:active {
+  background-color: red;
+  color: black;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+.image {
+  width: 100%;
+}
+
+.h2 {
+  text-align: center;
+  font-size: 3em;
+  font-weight: 200;
+  color: red;
+}
+
+.btn {
+  width: 100%;
+  margin: 15px 0;
+  text-align: center;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 3em;
+  font-weight: 200;
+  color: #6b6b6b;
+  background-color: black;
+  border: none;
+  transition: all 1.2s;
+}
+
+/* dkp table */
+.dkp-table {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.MuiInput-underline:after {
+  border-bottom: 2px solid #6b6b6b !important;
+}
+
+.MuiTableRow-root th div span span svg {
+  color: #000 !important;
+}
+
+/* media queries */
+/* Less than 799 */
+@media screen and (max-width: 600px) {
+  .h2 {
+    font-size: 1.2em;
+  }
 }
