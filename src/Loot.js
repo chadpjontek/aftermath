@@ -12,18 +12,13 @@ const array_chunks = (array, chunk_size) => Array(Math.ceil(array.length / chunk
 
 const data = array_chunks(dataArr, 7);
 console.log(data);
-const columns = ['player',
+const columns = ['player', 'item',
   {
-    name: "item name",
-    options: {
-      display: false
-    }
-  },
-  {
-    name: "item",
+    name: "wowhead",
     options: {
       customBodyRender: (value, tableMeta, updateValue) => (
         <Link href={`https://classic.wowhead.com/item=${value}`} data-wowhead={`item=${value}`} className=''>
+          link
         </Link>
       )
     }
@@ -126,6 +121,11 @@ const Loot = (props) => {
           backgroundColor: '#000',
           color: '#FF0000',
           fontWeight: 'bold'
+        }
+      },
+      MuiLink: {
+        root: {
+          color: '#e0e0e0',
         }
       },
     }
