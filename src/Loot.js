@@ -3,6 +3,7 @@ import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import lootData from './lootData';
 import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 
 const dataArr = lootData.split(',');
 
@@ -10,7 +11,24 @@ const dataArr = lootData.split(',');
 const array_chunks = (array, chunk_size) => Array(Math.ceil(array.length / chunk_size)).fill().map((_, index) => index * chunk_size).map(begin => array.slice(begin, begin + chunk_size))
 
 const data = array_chunks(dataArr, 7);
-const columns = ['player', 'item', 'item number', 'zone', 'boss', 'date', 'cost']
+console.log(data);
+const columns = ['player',
+  {
+    name: "item name",
+    options: {
+      display: false
+    }
+  },
+  {
+    name: "item",
+    options: {
+      customBodyRender: (value, tableMeta, updateValue) => (
+        <Link href={`https://classic.wowhead.com/item=${value}`} data-wowhead={`item=${value}`} className=''>
+        </Link>
+      )
+    }
+  },
+  'zone', 'boss', 'date', 'cost']
 const options = {
   filterType: 'dropdown',
   responsive: 'scrollFullHeight',
@@ -122,7 +140,7 @@ const Loot = (props) => {
           DKP
       </Button>
         <Button variant="contained" href="#contained-buttons" className='btn-nav' onClick={goToHistory}>
-          Loot
+          History
       </Button>
       </div>
       <MuiThemeProvider theme={getMuiTheme()}>

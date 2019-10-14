@@ -41,7 +41,7 @@ button:active {
 
 /* dkp table */
 .dkp-table {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -57,7 +57,7 @@ button:active {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: 1200px;
 }
 
 .btn-nav {
