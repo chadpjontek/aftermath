@@ -1,22 +1,27 @@
 import React from 'react';
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import sampleData from './sampleData';
+import historyData from './historyData';
+import Button from '@material-ui/core/Button';
 
-const dataArr = sampleData.split(',');
+const dataArr = historyData.split(',');
 
+// split array into n array chunks
 const array_chunks = (array, chunk_size) => Array(Math.ceil(array.length / chunk_size)).fill().map((_, index) => index * chunk_size).map(begin => array.slice(begin, begin + chunk_size))
 
-const data = array_chunks(dataArr, 6);
-const columns = ['player', 'class', 'dkp']
+const data = array_chunks(dataArr, 4);
+const columns = ['players', 'dkp', 'date', 'reason']
 const options = {
   filterType: 'dropdown',
   responsive: 'scrollFullHeight',
-  pagination: 'false',
   rowsPerPage: '15'
 }
 
-const DkpTable = () => {
+const History = (props) => {
+
+  const goToHome = () => props.history.push(`/home`);
+  const goToDkp = () => props.history.push(`/dkp`);
+  const goToLoot = () => props.history.push(`/loot`);
 
   const getMuiTheme = () => createMuiTheme({
     overrides: {
@@ -109,16 +114,29 @@ const DkpTable = () => {
     }
   })
   return (
-    <MuiThemeProvider theme={getMuiTheme()}>
-      <MUIDataTable
-        className='dkp-table'
-        title={"Aftermath DKP"}
-        data={data}
-        columns={columns}
-        options={options}
-      />
-    </MuiThemeProvider>
+    <div>
+      <div className='buttonNav'>
+        <Button variant="contained" href="#contained-buttons" className='btn-nav' onClick={goToHome}>
+          Home
+      </Button>
+        <Button variant="contained" href="#contained-buttons" className='btn-nav' onClick={goToDkp}>
+          DKP
+      </Button>
+        <Button variant="contained" href="#contained-buttons" className='btn-nav' onClick={goToLoot}>
+          Loot
+      </Button>
+      </div>
+      <MuiThemeProvider theme={getMuiTheme()}>
+        <MUIDataTable
+          className='dkp-table'
+          title={"Aftermath DKP"}
+          data={data}
+          columns={columns}
+          options={options}
+        />
+      </MuiThemeProvider>
+    </div>
   );
 };
 
-export default DkpTable;
+export default History;

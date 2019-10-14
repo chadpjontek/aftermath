@@ -53,6 +53,18 @@ button:active {
   color: #000 !important;
 }
 
+.buttonNav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.btn-nav {
+  max-width: 150px;
+  justify-self: center;
+}
+
 /* media queries */
 /* Less than 799 */
 @media screen and (max-width: 600px) {

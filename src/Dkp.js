@@ -1,0 +1,142 @@
+import React from 'react';
+import MUIDataTable from "mui-datatables";
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import dkpData from './dkpData';
+
+const dataArr = dkpData.split(',');
+
+// split array into n array chunks
+const array_chunks = (array, chunk_size) => Array(Math.ceil(array.length / chunk_size)).fill().map((_, index) => index * chunk_size).map(begin => array.slice(begin, begin + chunk_size))
+
+const data = array_chunks(dataArr, 6);
+const columns = ['player', 'class', 'dkp']
+const options = {
+  filterType: 'dropdown',
+  responsive: 'scrollFullHeight',
+  rowsPerPage: '15'
+}
+
+const Dkp = (props) => {
+
+  const goToHome = () => props.history.push(`/home`);
+  const goToHistory = () => props.history.push(`/history`);
+  const goToLoot = () => props.history.push(`/loot`);
+
+  const getMuiTheme = () => createMuiTheme({
+    overrides: {
+      MUIDataTableSelectCell: {
+        root: {
+          backgroundColor: '#000'
+        },
+        headerCell: {
+          backgroundColor: '#f00',
+          color: '#000'
+        }
+      },
+      MUIDataTableHeadCell: {
+        fixedHeader: {
+          fontFamily: 'Work Sans',
+          fontWeight: 600,
+          fontSize: '1.2rem',
+          backgroundColor: '#f00'
+        }
+      },
+      MuiTableCell: {
+        root: {
+          backgroundColor: '#000',
+          borderBottom: '1px solid #6b6b6b',
+        },
+        head: {
+          fontWeight: 'bold'
+        }
+      },
+      MUIDataTableHeadRow: {
+        root: {
+          backgroundColor: '#f00',
+          color: '#FF0000',
+          fontWeight: 'bold'
+        }
+      },
+      MUIDataTableBodyCell: {
+        root: {
+          backgroundColor: '#000',
+          color: '#FF0000',
+          fontWeight: 'bold'
+        }
+      },
+      MUIDataTableToolbar: {
+        root: {
+          backgroundColor: '#000',
+          color: '#FF0000',
+          fontWeight: 'bold'
+        }
+      },
+      MuiSvgIcon: {
+        root: {
+          color: '#f00',
+        }
+      },
+      MuiSelect: {
+        icon: {
+          color: '#f00',
+        }
+      },
+      MuiCheckbox: {
+        root: {
+          color: '#f00',
+        }
+      },
+      MuiInputBase: {
+        input: {
+          color: '#fff',
+        }
+      },
+      MuiInput: {
+        underline: {
+          color: '#fff',
+        }
+      },
+      MUIDataTableBodyRow: {
+        root: {
+          backgroundColor: '#000',
+          color: '#FF0000',
+          fontWeight: 'bold'
+        }
+      },
+      MuiTablePagination: {
+        root: {
+          backgroundColor: '#000',
+          color: '#FF0000',
+          fontWeight: 'bold'
+        }
+      },
+    }
+  })
+  return (
+    <div>
+      <div className='buttonNav'>
+        <Button variant="contained" href="#contained-buttons" className='btn-nav' onClick={goToHome}>
+          Home
+      </Button>
+        <Button variant="contained" href="#contained-buttons" className='btn-nav' onClick={goToLoot}>
+          Loot
+      </Button>
+        <Button variant="contained" href="#contained-buttons" className='btn-nav' onClick={goToHistory}>
+          History
+      </Button>
+      </div>
+      <MuiThemeProvider theme={getMuiTheme()}>
+        <MUIDataTable
+          className='dkp-table'
+          title={"Aftermath DKP"}
+          data={data}
+          columns={columns}
+          options={options}
+        />
+      </MuiThemeProvider>
+    </div>
+  );
+};
+
+export default Dkp;
