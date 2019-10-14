@@ -9,7 +9,7 @@ const dataArr = lootData.split(',');
 // split array into n array chunks
 const array_chunks = (array, chunk_size) => Array(Math.ceil(array.length / chunk_size)).fill().map((_, index) => index * chunk_size).map(begin => array.slice(begin, begin + chunk_size))
 
-const data = array_chunks(dataArr, 8);
+const data = array_chunks(dataArr, 7);
 const columns = ['player', 'item', 'item number', 'zone', 'boss', 'date', 'cost']
 const options = {
   filterType: 'dropdown',
