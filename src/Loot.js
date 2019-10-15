@@ -11,16 +11,32 @@ const dataArr = lootData.split(',');
 const array_chunks = (array, chunk_size) => Array(Math.ceil(array.length / chunk_size)).fill().map((_, index) => index * chunk_size).map(begin => array.slice(begin, begin + chunk_size))
 
 const data = array_chunks(dataArr, 7);
-console.log(data);
-const columns = ['player', 'item',
+// Take each chunk of data, and combine the 1st and 2nd values.
+const mergedData = [];
+for (const chunk of data) {
+  const itemVals = chunk.slice(1, 3);
+  console.log(itemVals);
+  const combinedVals = itemVals.join('-');
+  console.log(combinedVals);
+  const firstVal = chunk.slice(0, 1);
+  const endVals = chunk.slice(3);
+  const concatVals = firstVal.concat(combinedVals, endVals);
+  mergedData.push(concatVals);
+}
+console.log(mergedData);
+const columns = ['player',
   {
-    name: "wowhead",
+    name: "item",
     options: {
-      customBodyRender: (value, tableMeta, updateValue) => (
-        <Link href={`https://classic.wowhead.com/item=${value}`} data-wowhead={`item=${value}`} className=''>
-          link
-        </Link>
-      )
+      customBodyRender: (value, tableMeta, updateValue) => {
+        const valArr = value.split('-');
+        console.log(valArr);
+        return (
+          <Link href={`https://classic.wowhead.com/item=${valArr[1]}`} data-wowhead={`item=${valArr[1]}`} className=''>
+            {`${valArr[0]}`}
+          </Link>
+        )
+      }
     }
   },
   'zone', 'boss', 'date', 'cost']
@@ -125,7 +141,7 @@ const Loot = (props) => {
       },
       MuiLink: {
         root: {
-          color: '#e0e0e0',
+          color: '#FF0000',
         }
       },
     }
@@ -147,7 +163,7 @@ const Loot = (props) => {
         <MUIDataTable
           className='dkp-table'
           title={"Aftermath DKP"}
-          data={data}
+          data={mergedData}
           columns={columns}
           options={options}
         />
