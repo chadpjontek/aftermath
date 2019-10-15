@@ -19,9 +19,9 @@ const options = {
 
 const Dkp = (props) => {
 
-  const goToHome = () => props.history.push(`/home`);
-  const goToHistory = () => props.history.push(`/history`);
-  const goToLoot = () => props.history.push(`/loot`);
+  const goToHome = () => props.history.push('/');
+  const goToHistory = () => props.history.push('/history');
+  const goToLoot = () => props.history.push('/loot');
 
   const getMuiTheme = () => createMuiTheme({
     overrides: {
@@ -116,13 +116,13 @@ const Dkp = (props) => {
   return (
     <div>
       <div className='buttonNav'>
-        <Button variant="contained" href="#contained-buttons" className='btn-nav' onClick={goToHome}>
+        <Button variant="contained" className='btn-nav' onClick={goToHome}>
           Home
       </Button>
-        <Button variant="contained" href="#contained-buttons" className='btn-nav' onClick={goToLoot}>
+        <Button variant="contained" className='btn-nav' onClick={goToLoot}>
           Loot
       </Button>
-        <Button variant="contained" href="#contained-buttons" className='btn-nav' onClick={goToHistory}>
+        <Button variant="contained" className='btn-nav' onClick={goToHistory}>
           History
       </Button>
       </div>
