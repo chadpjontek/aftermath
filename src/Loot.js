@@ -15,22 +15,18 @@ const data = array_chunks(dataArr, 7);
 const mergedData = [];
 for (const chunk of data) {
   const itemVals = chunk.slice(1, 3);
-  console.log(itemVals);
   const combinedVals = itemVals.join('-');
-  console.log(combinedVals);
   const firstVal = chunk.slice(0, 1);
   const endVals = chunk.slice(3);
   const concatVals = firstVal.concat(combinedVals, endVals);
   mergedData.push(concatVals);
 }
-console.log(mergedData);
 const columns = ['player',
   {
     name: "item",
     options: {
-      customBodyRender: (value, tableMeta, updateValue) => {
+      customBodyRender: (value) => {
         const valArr = value.split('-');
-        console.log(valArr);
         return (
           <Link href={`https://classic.wowhead.com/item=${valArr[1]}`} data-wowhead={`item=${valArr[1]}`} className=''>
             {`${valArr[0]}`}
@@ -39,7 +35,19 @@ const columns = ['player',
       }
     }
   },
-  'zone', 'boss', 'date', 'cost']
+  'zone', 'boss',
+  {
+    name: 'date',
+    options: {
+      customBodyRender: (value) => {
+        const event = new Date(parseInt(value * 1000));
+        const date = event.toString();
+        return (
+          <p>{date}</p>
+        )
+      }
+    }
+  }, 'cost']
 const options = {
   filterType: 'dropdown',
   responsive: 'scrollFullHeight',

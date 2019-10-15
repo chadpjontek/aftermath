@@ -10,7 +10,20 @@ const dataArr = historyData.split(',');
 const array_chunks = (array, chunk_size) => Array(Math.ceil(array.length / chunk_size)).fill().map((_, index) => index * chunk_size).map(begin => array.slice(begin, begin + chunk_size))
 
 const data = array_chunks(dataArr, 4);
-const columns = ['players', 'dkp', 'date', 'reason']
+const columns = ['players', 'dkp',
+  {
+    name: 'date',
+    options: {
+      customBodyRender: (value) => {
+        const event = new Date(parseInt(value * 1000));
+        const date = event.toString();
+        return (
+          <p>{date}</p>
+        )
+      }
+    }
+  },
+  'reason']
 const options = {
   filterType: 'dropdown',
   responsive: 'scrollFullHeight',
