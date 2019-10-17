@@ -10,13 +10,25 @@ const dataArr = historyData.split(',');
 const array_chunks = (array, chunk_size) => Array(Math.ceil(array.length / chunk_size)).fill().map((_, index) => index * chunk_size).map(begin => array.slice(begin, begin + chunk_size))
 
 const data = array_chunks(dataArr, 4);
+// Massage data so it can be consumed by table component
+// data chunk looks like this --> [player, dkp, date, reason]
+// Convert dkp values from str to int
+const massagedData = [];
+for (const chunk of data) {
+  const firstVal = chunk.slice(0, 1);
+  const dkpVal = chunk.slice(1, 2);
+  const intVal = parseInt(dkpVal[0]);
+  const finalVals = chunk.slice(2);
+  const concatVals = firstVal.concat(intVal, finalVals);
+  massagedData.push(concatVals);
+}
 const columns = ['players', 'dkp',
   {
     name: 'date',
     options: {
       customBodyRender: (value) => {
         const event = new Date(parseInt(value * 1000));
-        const date = event.toString();
+        const date = event.toISOString();
         return (
           <p>{date}</p>
         )
@@ -142,7 +154,7 @@ const History = (props) => {
         <MUIDataTable
           className='dkp-table'
           title={"Aftermath DKP"}
-          data={data}
+          data={massagedData}
           columns={columns}
           options={options}
         />

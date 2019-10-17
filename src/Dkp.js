@@ -10,7 +10,21 @@ const dataArr = dkpData.split(',');
 const array_chunks = (array, chunk_size) => Array(Math.ceil(array.length / chunk_size)).fill().map((_, index) => index * chunk_size).map(begin => array.slice(begin, begin + chunk_size))
 
 const data = array_chunks(dataArr, 6);
+
+// Massage data so it can be consumed by table component
+// data chunk looks like this --> [player, dkp, date, reason]
+// Convert dkp values from str to int
+const massagedData = [];
+for (const chunk of data) {
+  const firstVals = chunk.slice(0, 2);
+  const dkpVal = chunk.slice(2);
+  const intVal = parseInt(dkpVal[0]);
+  const concatVals = firstVals.concat(intVal);
+  massagedData.push(concatVals);
+}
+
 const columns = ['player', 'class', 'dkp']
+
 const options = {
   filterType: 'dropdown',
   responsive: 'scrollFullHeight',
@@ -130,7 +144,7 @@ const Dkp = (props) => {
         <MUIDataTable
           className='dkp-table'
           title={"Aftermath DKP"}
-          data={data}
+          data={massagedData}
           columns={columns}
           options={options}
         />

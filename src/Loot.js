@@ -11,15 +11,20 @@ const dataArr = lootData.split(',');
 const array_chunks = (array, chunk_size) => Array(Math.ceil(array.length / chunk_size)).fill().map((_, index) => index * chunk_size).map(begin => array.slice(begin, begin + chunk_size))
 
 const data = array_chunks(dataArr, 7);
-// Take each chunk of data, and combine the 1st and 2nd values.
-const mergedData = [];
+// Massage data so it can be consumed by table component
+// data chunk looks like this --> [player, item name, item number, zone, boss, date, cost]
+// Join item name and item number witj a "-"
+// Convert cost value from str to int
+const massagedData = [];
 for (const chunk of data) {
   const itemVals = chunk.slice(1, 3);
   const combinedVals = itemVals.join('-');
   const firstVal = chunk.slice(0, 1);
-  const endVals = chunk.slice(3);
-  const concatVals = firstVal.concat(combinedVals, endVals);
-  mergedData.push(concatVals);
+  const nextVals = chunk.slice(3, 6);
+  const finalVal = chunk.slice(6);
+  const intVal = parseInt(finalVal[0]);
+  const concatVals = firstVal.concat(combinedVals, nextVals, intVal);
+  massagedData.push(concatVals);
 }
 const columns = ['player',
   {
@@ -41,7 +46,7 @@ const columns = ['player',
     options: {
       customBodyRender: (value) => {
         const event = new Date(parseInt(value * 1000));
-        const date = event.toString();
+        const date = event.toISOString();
         return (
           <p>{date}</p>
         )
@@ -171,7 +176,7 @@ const Loot = (props) => {
         <MUIDataTable
           className='dkp-table'
           title={"Aftermath DKP"}
-          data={mergedData}
+          data={massagedData}
           columns={columns}
           options={options}
         />
