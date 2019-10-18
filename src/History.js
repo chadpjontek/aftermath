@@ -1,8 +1,8 @@
 import React from 'react';
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import historyData from './historyData';
 import Button from '@material-ui/core/Button';
+import historyData from './historyData';
 
 const dataArr = historyData.split(',');
 
