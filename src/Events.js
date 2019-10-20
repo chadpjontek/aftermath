@@ -21,6 +21,18 @@ const Events = (props) => {
           frameBorder="0"
           scrolling="no" />
       </div>
+      <div className="iframe-container">
+        <Iframe url="https://disweb.dashflo.net/channels/208267752140439552/631245510069583902"
+          width="100%"
+          height="100%"
+          id="myId"
+          styles={{ borderWidth: 0 }}
+          className="myClassname"
+          display="initial"
+          position="relative"
+          frameBorder="0"
+          scrolling="no" />
+      </div>
     </div>
   )
 };

@@ -68,7 +68,6 @@ const History = (props) => {
             }
           );
           const text = await response.text();
-          console.log('got a network response');
           dispatch({
             type: 'changeSheetData',
             newSheetData: text
