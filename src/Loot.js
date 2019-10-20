@@ -4,6 +4,7 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import { useStateValue } from './stateManager';
+import { getSheetData, array_chunks } from './helpers';
 
 const columns = ['player',
   {
@@ -43,26 +44,25 @@ const Loot = (props) => {
   const [lootData, setLootData] = useState([]);
 
   const formatData = (text) => {
+    // Get the history data from the text, located in the fifth match
     const regex = /([^"])+/g;
     const arr = text.match(regex);
     const dataArr = arr[4].split(',');
-    // split array into n array chunks
-    const array_chunks = (array, chunk_size) => Array(Math.ceil(array.length / chunk_size)).fill().map((_, index) => index * chunk_size).map(begin => array.slice(begin, begin + chunk_size))
-
+    // Split the array into chunks for each row
     const data = array_chunks(dataArr, 7);
     // Massage data so it can be consumed by table component
     // data chunk looks like this --> [player, item name, item number, zone, boss, date, cost]
-    // Join item name and item number witj a "-"
-    // Convert cost value from str to int
     const massagedData = [];
     for (const chunk of data) {
       const itemVals = chunk.slice(1, 3);
-      const combinedVals = itemVals.join('-');
+      // Join item name and item number witj a "-"
+      const joinedVal = itemVals.join('-');
       const firstVal = chunk.slice(0, 1);
       const nextVals = chunk.slice(3, 6);
       const finalVal = chunk.slice(6);
+      // Convert cost value from str to int
       const intVal = parseInt(finalVal[0]);
-      const concatVals = firstVal.concat(combinedVals, nextVals, intVal);
+      const concatVals = firstVal.concat(joinedVal, nextVals, intVal);
       massagedData.push(concatVals);
     }
     setLootData(massagedData);
@@ -77,13 +77,7 @@ const Loot = (props) => {
       // it hasn't so download the data and store in global state before formating
       try {
         const fetchData = async () => {
-          const response = await fetch(
-            'https://docs.google.com/spreadsheets/d/e/2PACX-1vTScmdklpM8HplsoVyZzBgGcZT8LY0Dzw29EduKlZvhbwpmgdb7xjslxgR7xsHPYJlGrSrB7DR4h4Cs/pub?output=csv',
-            {
-              mode: 'cors',
-              method: 'GET'
-            }
-          );
+          const response = await getSheetData();
           const text = await response.text();
           dispatch({
             type: 'changeSheetData',

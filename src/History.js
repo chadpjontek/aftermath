@@ -3,6 +3,7 @@ import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { useStateValue } from './stateManager';
+import { getSheetData, array_chunks } from './helpers';
 
 const columns = ['players', 'dkp',
   {
@@ -28,21 +29,20 @@ const History = (props) => {
   const [{ sheetData }, dispatch] = useStateValue();
   const [historyData, setHistoryData] = useState([])
   const formatData = (text) => {
+    // Get the history data from the text, located in the third match
     const regex = /([^"])+/g;
     const arr = text.match(regex);
     const dataArr = arr[2].split(',');
 
-    // split array into n array chunks
-    const array_chunks = (array, chunk_size) => Array(Math.ceil(array.length / chunk_size)).fill().map((_, index) => index * chunk_size).map(begin => array.slice(begin, begin + chunk_size))
-
+    // Split the array into chunks for each row
     const data = array_chunks(dataArr, 4);
     // Massage data so it can be consumed by table component
     // data chunk looks like this --> [player, dkp, date, reason]
-    // Convert dkp values from str to int
     const massagedData = [];
     for (const chunk of data) {
       const firstVal = chunk.slice(0, 1);
       const dkpVal = chunk.slice(1, 2);
+      // Convert dkp values from str to int
       const intVal = parseInt(dkpVal[0]);
       const finalVals = chunk.slice(2);
       const concatVals = firstVal.concat(intVal, finalVals);
@@ -60,13 +60,7 @@ const History = (props) => {
       // it hasn't so download the data and store in global state before formating
       try {
         const fetchData = async () => {
-          const response = await fetch(
-            'https://docs.google.com/spreadsheets/d/e/2PACX-1vTScmdklpM8HplsoVyZzBgGcZT8LY0Dzw29EduKlZvhbwpmgdb7xjslxgR7xsHPYJlGrSrB7DR4h4Cs/pub?output=csv',
-            {
-              mode: 'cors',
-              method: 'GET'
-            }
-          );
+          const response = await getSheetData();
           const text = await response.text();
           dispatch({
             type: 'changeSheetData',

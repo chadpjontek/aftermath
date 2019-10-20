@@ -3,6 +3,7 @@ import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { useStateValue } from './stateManager';
+import { getSheetData, array_chunks } from './helpers';
 
 const columns = ['player', 'class', 'dkp']
 
@@ -17,22 +18,19 @@ const Dkp = (props) => {
   const [dkpData, setDkpData] = useState([]);
 
   const formatData = (text) => {
+    // Get the dkp data from the text, located in the first match
     const regex = /([^"])+/g;
-    const arr = regex.exec(text);
+    const arr = text.match(regex);
     const dataArr = arr[0].split(',');
-
-    // split array into n array chunks
-    const array_chunks = (array, chunk_size) => Array(Math.ceil(array.length / chunk_size)).fill().map((_, index) => index * chunk_size).map(begin => array.slice(begin, begin + chunk_size))
-
+    // Split the array into chunks for each row
     const data = array_chunks(dataArr, 6);
-
     // Massage data so it can be consumed by table component
     // data chunk looks like this --> [player, dkp, date, reason]
-    // Convert dkp values from str to int
     const massagedData = [];
     for (const chunk of data) {
       const firstVals = chunk.slice(0, 2);
       const dkpVal = chunk.slice(2);
+      // Convert dkp values from str to int
       const intVal = parseInt(dkpVal[0]);
       const concatVals = firstVals.concat(intVal);
       massagedData.push(concatVals);
@@ -50,13 +48,7 @@ const Dkp = (props) => {
       // it hasn't so download the data and store in global state before formating
       try {
         const fetchData = async () => {
-          const response = await fetch(
-            'https://docs.google.com/spreadsheets/d/e/2PACX-1vTScmdklpM8HplsoVyZzBgGcZT8LY0Dzw29EduKlZvhbwpmgdb7xjslxgR7xsHPYJlGrSrB7DR4h4Cs/pub?output=csv',
-            {
-              mode: 'cors',
-              method: 'GET'
-            }
-          );
+          const response = await getSheetData();
           const text = await response.text();
           dispatch({
             type: 'changeSheetData',
@@ -65,7 +57,6 @@ const Dkp = (props) => {
           formatData(text);
         }
         fetchData();
-
       } catch (error) {
         throw error;
       }
