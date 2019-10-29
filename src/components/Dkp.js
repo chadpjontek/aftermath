@@ -11,7 +11,7 @@ const options = {
   responsive: 'scrollFullHeight'
 }
 
-const Dkp = (props) => {
+const Dkp = () => {
   const [{ sheetData }, dispatch] = useStateValue();
   const [dkpData, setDkpData] = useState([]);
 

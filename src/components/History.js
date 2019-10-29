@@ -23,7 +23,7 @@ const options = {
   responsive: 'scrollFullHeight'
 }
 
-const History = (props) => {
+const History = () => {
   const [{ sheetData }, dispatch] = useStateValue();
   const [historyData, setHistoryData] = useState([])
   const formatData = (text) => {

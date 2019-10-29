@@ -37,7 +37,7 @@ const options = {
   responsive: 'scrollFullHeight'
 }
 
-const Loot = (props) => {
+const Loot = () => {
   const [{ sheetData }, dispatch] = useStateValue();
   const [lootData, setLootData] = useState([]);
 

@@ -1,8 +1,11 @@
 import React, { Suspense, lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { useTransition, animated } from 'react-spring';
+
 import Nav from './Nav';
 import Loading from './Loading';
 import { StateProvider } from '../helpers/stateManager';
+import useRouter from '../helpers/useRouter';
 import '../styles/App.css';
 
 // lazy load routes
@@ -31,20 +34,35 @@ function App() {
         return state;
     }
   };
+  // Store location history
+  const { location } = useRouter();
+  // Create route page animations
+  const transitions = useTransition(location, location => location.pathname, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 1 }
+  });
+  // return JSX
   return (
     <StateProvider initialState={initialState} reducer={reducer}>
       <div>
         <Nav />
-        <Suspense fallback={<Loading />}>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/events" component={Events} />
-            <Route exact path="/dkp" component={Dkp} />
-            <Route exact path="/history" component={History} />
-            <Route exact path="/loot" component={Loot} />
-            <Route component={NoMatch} />
-          </Switch>
-        </Suspense>
+        {transitions.map(({ item, props, key }) => (
+          <animated.div
+            key={key}
+            style={{ ...props, display: 'flex', justifyContent: 'center' }}>
+            <Suspense fallback={<Loading />}>
+              <Switch location={item}>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/events" component={Events} />
+                <Route exact path="/dkp" component={Dkp} />
+                <Route exact path="/history" component={History} />
+                <Route exact path="/loot" component={Loot} />
+                <Route component={NoMatch} />
+              </Switch>
+            </Suspense>
+          </animated.div>
+        ))}
       </div>
     </StateProvider>
   );
