@@ -10,8 +10,8 @@ const Home = () => {
           <img src={logo} className="image" alt="aftermath logo" />
 
         </div>
-        <h2 className="h2">Horde - Benediction - PvP - US</h2>
-        <h3 className='h3'>News - Oct 27th, 2019</h3>
+        <p className="h1-desc">Horde - Benediction - PvP - US</p>
+        <p className='news-date'>Oct 27th, 2019</p>
       </div >
       <img className='news-img' src={rag} alt='Screenshot of Aftermath posing in front of the corpse of Ragnaros' />
       <p className='news-p'>We started the week off right with a little PvP on the alliance boat in Theramore. When Scooty started yelling at us, we knew it was time to put on our game faces. Onyxia didn't stand a chance. One-shot. On to MC...</p>

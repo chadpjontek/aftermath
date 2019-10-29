@@ -53,18 +53,27 @@ button:active {
   margin-bottom: 48px;
 }
 
-.h2 {
+.h1-desc {
   text-align: center;
   font-size: 2.5em;
   font-weight: 200;
   color: var(--secondary-color);
 }
-.h3 {
+
+.h2 {
+  text-align: center;
+  margin: 0;
+  font-size: 2.5em;
+  font-weight: 200;
+  color: var(--primary-color);
+}
+
+.news-date {
   text-align: center;
   margin: 0;
   font-size: 1.5em;
   font-weight: 600;
-  color: var(--primary-color);
+  color: var(--light-color);
 }
 
 .btn {
@@ -218,15 +227,17 @@ button:active {
 
 /* Less than 600 */
 @media screen and (max-width: 600px) {
-  .h2 {
+
+  .h1-desc {
     font-size: 1.2em;
     font-weight: 600;
   }
-  .h3 {
-    text-align: center;
-    font-size: 1em;
+
+  .news-date {
+    font-size: 1.2em;
     font-weight: 200;
   }
+
   .image {
     height: 134px;
   }
