@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
-import Events from './Events';
-import Dkp from './Dkp';
-import History from './History';
-import Loot from './Loot';
-import Home from './Home';
+import Nav from './Nav';
+import Loading from './Loading';
 import { StateProvider } from './stateManager';
+
+// lazy load routes
+const Home = lazy(() => import(/* webpackChunkName: "Home" */'./Home'));
+const Events = lazy(() => import(/* webpackChunkName: "Events" */'./Events'));
+const Dkp = lazy(() => import(/* webpackChunkName: "Dkp" */'./Dkp'));
+const History = lazy(() => import(/* webpackChunkName: "History" */'./History'));
+const Loot = lazy(() => import(/* webpackChunkName: "Loot" */'./Loot'));
+const NoMatch = lazy(() => import(/* webpackChunkName: "NoMatch" */'./NoMatch'));
 
 function App() {
   // Set initial global state
@@ -28,14 +33,19 @@ function App() {
   };
   return (
     <StateProvider initialState={initialState} reducer={reducer}>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/events" component={Events} />
-        <Route exact path="/dkp" component={Dkp} />
-        <Route exact path="/history" component={History} />
-        <Route exact path="/loot" component={Loot} />
-        <Route component={Home} />
-      </Switch>
+      <div>
+        <Nav />
+        <Suspense fallback={<Loading />}>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/events" component={Events} />
+            <Route exact path="/dkp" component={Dkp} />
+            <Route exact path="/history" component={History} />
+            <Route exact path="/loot" component={Loot} />
+            <Route component={NoMatch} />
+          </Switch>
+        </Suspense>
+      </div>
     </StateProvider>
   );
 }

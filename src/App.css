@@ -1,29 +1,70 @@
+/* vars */
+:root {
+  --dark-color: black;
+  --light-color: white;
+  --primary-color: #6b6b6b;
+  --secondary-color: #c00;
+}
+
+/* general */
 body {
-  background: black;
+  background: var(--dark-color);
   font-family: 'Work Sans', sans-serif;
 }
 
 button:hover,
 button:active {
-  background-color: red;
-  color: black;
+  background-color: var(--secondary-color);
+  color: var(--dark-color);
 }
 
-.App {
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 48px auto 0;
+}
+
+.img-container {
   display: grid;
-  align-items: center;
   justify-content: center;
 }
 
 .image {
+  height: 400px;
+  transition: height 0.66s ease-out;
+}
+
+.news-img{
   width: 100%;
+  transition: height 0.66s ease-out;
+}
+
+.news-p {
+  color: var(--light-color);
+  font-size: 1.5em;
+  margin: 0 auto;
+  max-width: 900px;
+  text-align: justify;
+  text-indent: 1.5em;
+  padding: 10px;
+}
+
+.empty {
+  margin-bottom: 48px;
 }
 
 .h2 {
   text-align: center;
-  font-size: 3em;
+  font-size: 2.5em;
   font-weight: 200;
-  color: red;
+  color: var(--secondary-color);
+}
+.h3 {
+  text-align: center;
+  margin: 0;
+  font-size: 1.5em;
+  font-weight: 600;
+  color: var(--primary-color);
 }
 
 .btn {
@@ -33,8 +74,8 @@ button:active {
   font-family: 'Work Sans', sans-serif;
   font-size: 3em;
   font-weight: 200;
-  color: #6b6b6b;
-  background-color: black;
+  color: var(--primary-color);
+  background-color: var(--dark-color);
   border: none;
   transition: all 1.2s;
 }
@@ -46,11 +87,11 @@ button:active {
 }
 
 .MuiInput-underline:after {
-  border-bottom: 2px solid #6b6b6b !important;
+  border-bottom: 2px solid var(--primary-color) !important;
 }
 
 .MuiTableRow-root th div span span svg {
-  color: #000 !important;
+  color: var(--dark-color) !important;
 }
 
 .buttonNav {
@@ -76,10 +117,117 @@ button:active {
   max-width: 1200px;
 }
 
+/* nav */
+.nav {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: var(--dark-color);
+  font-family: 'Work Sans', sans-serif;
+  font-size: 18px;
+}
+
+.nav-container {
+  max-width: 1200px;
+  display: flex;
+  margin: 0 auto;
+}
+
+.logo {
+  height: 100%;
+  padding: 12px 5px;
+}
+.logo a {
+  color: var(--light-color);
+  text-decoration: none;
+  font-weight: 800;
+  vertical-align: middle;
+}
+
+.nav-links {
+  margin: 0 0 0 auto;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  height: 100%;
+  justify-content: space-around;
+}
+.nav-links li {
+  padding: 12px;
+}
+.nav-links li a {
+  color: var(--light-color);
+  text-decoration: none;
+  vertical-align: middle;
+}
+
 /* media queries */
-/* Less than 799 */
+/* Less than 768 */
+@media screen and (max-width: 768px) {
+  .image {
+    height: 300px;
+  }
+
+  .hamburger {
+    position: absolute;
+    cursor: pointer;
+    right: 5%;
+    top: 50%;
+    transform: translate(-5%, -50%);
+    z-index: 1000;
+  }
+  .hamburger .line {
+    width: 30px;
+    height: 3px;
+    background: var(--light-color);
+    margin: 5px;
+    transition: transform 0.25s ease-in-out;
+  }
+
+  .hamburger .open:nth-child(1) {
+      transform: rotate(45deg) translate(4px, 6px);
+    }
+
+    .hamburger .open:nth-child(2) {
+      transform: scaleX(0);
+    }
+
+    .hamburger .open:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -7px);
+    }
+
+  .nav-links {
+    clip-path: inset(0 0 0 100%);
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background: var(--secondary-color);
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    transition: all 0.6s;
+  }
+
+  .nav-links.open {
+    clip-path: inset(0 0 0 50%);
+    z-index: 99;
+  }
+}
+
+/* Less than 600 */
 @media screen and (max-width: 600px) {
   .h2 {
     font-size: 1.2em;
+    font-weight: 600;
+  }
+  .h3 {
+    text-align: center;
+    font-size: 1em;
+    font-weight: 200;
+  }
+  .image {
+    height: 134px;
   }
 }
