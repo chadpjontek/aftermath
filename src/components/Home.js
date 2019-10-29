@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from './images/aftermath-min.jpg';
-import rag from './images/aftermath-one-shot-rag-min.jpg'
+import logo from '../images/aftermath-min.jpg';
+import rag from '../images/aftermath-one-shot-rag-min.jpg'
 
 const Home = () => {
   return (

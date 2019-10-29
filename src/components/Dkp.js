@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import { useStateValue } from './stateManager';
-import { getSheetData, array_chunks } from './helpers';
+import { useStateValue } from '../helpers/stateManager';
+import { getSheetData, array_chunks } from '../helpers';
 
 const columns = ['player', 'class', 'dkp']
 

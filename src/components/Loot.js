@@ -1,10 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import { useStateValue } from './stateManager';
-import { getSheetData, array_chunks } from './helpers';
+import Link from '@material-ui/core/Link';
+import { useStateValue } from '../helpers/stateManager';
+import { getSheetData, array_chunks } from '../helpers';
 
-const columns = ['players', 'dkp',
+const columns = ['player',
+  {
+    name: "item",
+    options: {
+      customBodyRender: (value) => {
+        const valArr = value.split('-');
+        return (
+          <Link href={`https://classic.wowhead.com/item=${valArr[1]}`} data-wowhead={`item=${valArr[1]}`} className=''>
+            {`${valArr[0]}`}
+          </Link>
+        )
+      }
+    }
+  },
+  'zone', 'boss',
   {
     name: 'date',
     options: {
@@ -16,37 +31,39 @@ const columns = ['players', 'dkp',
         )
       }
     }
-  },
-  'reason']
+  }, 'cost']
 const options = {
   filterType: 'dropdown',
   responsive: 'scrollFullHeight'
 }
 
-const History = (props) => {
+const Loot = (props) => {
   const [{ sheetData }, dispatch] = useStateValue();
-  const [historyData, setHistoryData] = useState([])
+  const [lootData, setLootData] = useState([]);
+
   const formatData = (text) => {
-    // Get the history data from the text, located in the third match
+    // Get the history data from the text, located in the fifth match
     const regex = /([^"])+/g;
     const arr = text.match(regex);
-    const dataArr = arr[2].split(',');
-
+    const dataArr = arr[4].split(',');
     // Split the array into chunks for each row
-    const data = array_chunks(dataArr, 4);
+    const data = array_chunks(dataArr, 7);
     // Massage data so it can be consumed by table component
-    // data chunk looks like this --> [player, dkp, date, reason]
+    // data chunk looks like this --> [player, item name, item number, zone, boss, date, cost]
     const massagedData = [];
     for (const chunk of data) {
+      const itemVals = chunk.slice(1, 3);
+      // Join item name and item number witj a "-"
+      const joinedVal = itemVals.join('-');
       const firstVal = chunk.slice(0, 1);
-      const dkpVal = chunk.slice(1, 2);
-      // Convert dkp values from str to int
-      const intVal = parseInt(dkpVal[0]);
-      const finalVals = chunk.slice(2);
-      const concatVals = firstVal.concat(intVal, finalVals);
+      const nextVals = chunk.slice(3, 6);
+      const finalVal = chunk.slice(6);
+      // Convert cost value from str to int
+      const intVal = parseInt(finalVal[0]);
+      const concatVals = firstVal.concat(joinedVal, nextVals, intVal);
       massagedData.push(concatVals);
     }
-    setHistoryData(massagedData);
+    setLootData(massagedData);
   }
   useEffect(() => {
     // On first load of component,
@@ -168,6 +185,11 @@ const History = (props) => {
           fontWeight: 'bold'
         }
       },
+      MuiLink: {
+        root: {
+          color: '#c00',
+        }
+      },
     }
   })
   return (
@@ -176,7 +198,7 @@ const History = (props) => {
         <MUIDataTable
           className='dkp-table'
           title={"Aftermath DKP"}
-          data={historyData}
+          data={lootData}
           columns={columns}
           options={options}
         />
@@ -185,4 +207,4 @@ const History = (props) => {
   );
 };
 
-export default History;
+export default Loot;

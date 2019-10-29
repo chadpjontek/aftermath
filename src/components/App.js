@@ -1,9 +1,9 @@
 import React, { Suspense, lazy } from 'react';
-import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import Nav from './Nav';
 import Loading from './Loading';
-import { StateProvider } from './stateManager';
+import { StateProvider } from '../helpers/stateManager';
+import '../styles/App.css';
 
 // lazy load routes
 const Home = lazy(() => import(/* webpackChunkName: "Home" */'./Home'));
