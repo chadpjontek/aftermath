@@ -77,6 +77,11 @@ const History = (props) => {
 
   const getMuiTheme = () => createMuiTheme({
     overrides: {
+      MUIDataTable: {
+        responsiveScrollFullHeight: {
+          overflowX: 'scroll'
+        }
+      },
       MUIDataTableSelectCell: {
         root: {
           backgroundColor: '#000'
