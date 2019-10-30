@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { useStateValue } from '../helpers/stateManager';
-import { getSheetData, array_chunks } from '../helpers';
+import { getSheetData } from '../helpers';
 
 const columns = ['player', 'class', 'dkp']
 
@@ -19,15 +19,15 @@ const Dkp = () => {
     // Get the dkp data from the text, located in the first match
     const regex = /([^"])+/g;
     const arr = text.match(regex);
-    const dataArr = arr[0].split(',');
-    // Split the array into chunks for each row
-    const data = array_chunks(dataArr, 6);
     // Massage data so it can be consumed by table component
-    // data chunk looks like this --> [player, dkp, date, reason]
+    const dataArr = arr[0].split(/\n/);
     const massagedData = [];
-    for (const chunk of data) {
-      const firstVals = chunk.slice(0, 2);
-      const dkpVal = chunk.slice(2);
+    for (const chunk of dataArr) {
+      const re = /([^,])+/g;
+      const chunkArr = chunk.match(re);
+      console.log(chunkArr);
+      const firstVals = chunkArr.slice(0, 2);
+      const dkpVal = chunkArr.slice(2);
       // Convert dkp values from str to int
       const intVal = parseInt(dkpVal[0]);
       const concatVals = firstVals.concat(intVal);
