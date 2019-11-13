@@ -208,20 +208,20 @@ button:active {
     }
 
   .nav-links {
-    clip-path: inset(0 0 0 100%);
+    right: 0;
+    transform: translateX(100%);
     position: fixed;
     height: 100vh;
-    width: 100%;
+    width: 50%;
     background: var(--secondary-color);
     flex-direction: column;
-    justify-content: space-evenly;
     align-items: flex-end;
     transition: all 0.6s;
   }
 
   .nav-links.open {
-    clip-path: inset(0 0 0 50%);
     z-index: 99;
+    transform: translateX(0%);
   }
 }
 
