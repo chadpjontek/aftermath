@@ -7,6 +7,10 @@
 }
 
 /* general */
+* {
+  -webkit-overflow-scrolling: auto;
+}
+
 body {
   background: var(--dark-color);
   font-family: 'Work Sans', sans-serif;
