@@ -186,7 +186,8 @@ button:active {
     cursor: pointer;
     right: 5%;
     top: 50%;
-    transform: translate(-5%, -50%);
+    transform: translate3d(-5%, -50%, 2px);
+    -webkit-transform: translate3d(-5%, -50%, 2px);
     z-index: 1000;
   }
   .hamburger .line {
@@ -198,19 +199,24 @@ button:active {
   }
 
   .hamburger .open:nth-child(1) {
-      transform: rotate(45deg) translate(4px, 6px);
+      transform: rotate(45deg) translate3d(4px, 6px, 2px);
+      -webkit-transform: rotate(45deg) translate3d(4px, 6px, 2px);
     }
 
     .hamburger .open:nth-child(2) {
-      transform: scaleX(0);
+      transform: scaleX(0) translate3d(0 ,0 ,2px);
+      -webkit-transform: scaleX(0) translate3d(0 ,0 ,2px);
     }
 
     .hamburger .open:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -7px);
+      transform: rotate(-45deg) translate3d(6px, -7px, 2px);
+      -webkit-transform: rotate(-45deg) translate3d(6px, -7px, 2px);
     }
 
   .nav-links {
-    transform: translateX(-100%);
+    right: 0;
+    transform: translate3d(100%, 0, 1px);
+    -webkit-transform: translate3d(100%, 0, 1px);
     position: fixed;
     height: 100vh;
     width: 50%;
@@ -222,7 +228,8 @@ button:active {
 
   .nav-links.open {
     z-index: 99;
-    transform: translateX(0%);
+    transform: translate3d(0%, 0, 1px);
+    -webkit-transform: translate3d(0%, 0, 1px);
   }
 }
 
