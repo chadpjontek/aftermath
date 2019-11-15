@@ -7,10 +7,6 @@
 }
 
 /* general */
-* {
-  -webkit-overflow-scrolling: auto;
-}
-
 body {
   background: var(--dark-color);
   font-family: 'Work Sans', sans-serif;
@@ -28,6 +24,9 @@ button:active {
   width: 100%;
   max-width: 1200px;
   margin: 48px auto 0;
+  position: relative;
+  transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(0,0,0);
 }
 
 .img-container {
@@ -233,7 +232,7 @@ button:active {
   .nav-links.open {
     z-index: 99;
     transform: translate3d(0%, 0, 1px);
-    -webkit-transform: translate3d(0%, 0, 1px);
+    transform: translate3d(0%, 0, 1px);
   }
 }
 
