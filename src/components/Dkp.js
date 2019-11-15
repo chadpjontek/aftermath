@@ -25,7 +25,6 @@ const Dkp = () => {
     for (const chunk of dataArr) {
       const re = /([^,])+/g;
       const chunkArr = chunk.match(re);
-      console.log(chunkArr);
       const firstVals = chunkArr.slice(0, 2);
       const dkpVal = chunkArr.slice(2);
       // Convert dkp values from str to int
