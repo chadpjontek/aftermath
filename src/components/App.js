@@ -38,9 +38,9 @@ function App() {
   const { location } = useRouter();
   // Create route page animations
   const transitions = useTransition(location, location => location.pathname, {
-    from: { opacity: 0, WebkitTransform: 'translate3d(0,0,0)', WebkitoverflowScrolling: 'touch' },
-    enter: { opacity: 1, WebkitTransform: 'translate3d(0,0,0)', WebkitoverflowScrolling: 'touch' },
-    leave: { opacity: 1, WebkitTransform: 'translate3d(0,0,0)', WebkitOverflowScrolling: 'touch' }
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 1 }
   });
   // return JSX
   return (

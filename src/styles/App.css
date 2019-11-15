@@ -24,9 +24,6 @@ button:active {
   width: 100%;
   max-width: 1200px;
   margin: 48px auto 0;
-  position: relative;
-  transform: translate3d(0,0,0);
-  -webkit-transform: translate3d(0,0,0);
 }
 
 .img-container {
@@ -133,6 +130,7 @@ button:active {
 
 /* nav */
 .nav {
+  /* overflow: hidden; */
   position: fixed;
   top: 0;
   width: 100%;
@@ -188,8 +186,7 @@ button:active {
     cursor: pointer;
     right: 5%;
     top: 50%;
-    transform: translate3d(-5%, -50%, 2px);
-    -webkit-transform: translate3d(-5%, -50%, 2px);
+    transform: translate(-5%, -50%);
     z-index: 1000;
   }
   .hamburger .line {
@@ -201,24 +198,20 @@ button:active {
   }
 
   .hamburger .open:nth-child(1) {
-      transform: rotate(45deg) translate3d(4px, 6px, 2px);
-      -webkit-transform: rotate(45deg) translate3d(4px, 6px, 2px);
+      transform: rotate(45deg) translate(4px, 6px);
     }
 
     .hamburger .open:nth-child(2) {
-      transform: scaleX(0) translate3d(0 ,0 ,2px);
-      -webkit-transform: scaleX(0) translate3d(0 ,0 ,2px);
+      transform: scaleX(0);
     }
 
     .hamburger .open:nth-child(3) {
-      transform: rotate(-45deg) translate3d(6px, -7px, 2px);
-      -webkit-transform: rotate(-45deg) translate3d(6px, -7px, 2px);
+      transform: rotate(-45deg) translate(6px, -7px);
     }
 
   .nav-links {
     right: 0;
-    transform: translate3d(100%, 0, 1px);
-    -webkit-transform: translate3d(100%, 0, 1px);
+    transform: translateX(100%);
     position: fixed;
     height: 100vh;
     width: 50%;
@@ -230,8 +223,7 @@ button:active {
 
   .nav-links.open {
     z-index: 99;
-    transform: translate3d(0%, 0, 1px);
-    transform: translate3d(0%, 0, 1px);
+    transform: translateX(0%);
   }
 }
 
