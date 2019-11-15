@@ -37,31 +37,26 @@ function App() {
   // Store location history
   const { location } = useRouter();
   // Create route page animations
-  const transitions = useTransition(location, location => location.pathname, {
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 1 }
-  });
+  // const transitions = useTransition(location, location => location.pathname, {
+  //   from: { opacity: 0 },
+  //   enter: { opacity: 1 },
+  //   leave: { opacity: 1 }
+  // });
   // return JSX
   return (
     <StateProvider initialState={initialState} reducer={reducer}>
       <div>
         <Nav />
-        {transitions.map(({ item, props, key }) => (
-          <animated.div
-            key={key}
-            style={{ ...props, display: 'flex', justifyContent: 'center' }}>
-            <Suspense fallback={<Loading />}>
-              <Switch location={item}>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/events" component={Events} />
-                <Route exact path="/dkp" component={Dkp} />
-                <Route exact path="/history" component={History} />
-                <Route exact path="/loot" component={Loot} />
-                <Route component={NoMatch} />
-              </Switch>
-            </Suspense>
-          </animated.div>
+        <Suspense fallback={<Loading />}>
+          <Switch location={location}>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/events" component={Events} />
+            <Route exact path="/dkp" component={Dkp} />
+            <Route exact path="/history" component={History} />
+            <Route exact path="/loot" component={Loot} />
+            <Route component={NoMatch} />
+          </Switch>
+        </Suspense>
         ))}
       </div>
     </StateProvider>
