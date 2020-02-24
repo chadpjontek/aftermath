@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../images/aftermath-min.jpg';
 import rag from '../images/aftermath-one-shot-rag-min.jpg'
+import nef from '../images/aftermath-nef-down-min.jpg'
 
 const Home = () => {
   return (
@@ -8,9 +9,22 @@ const Home = () => {
       <div className="container">
         <div className='img-container'>
           <img src={logo} className="image" alt="aftermath logo" />
-
+          <p className="h1-desc">Horde - Benediction - PvP - US</p>
         </div>
-        <p className="h1-desc">Horde - Benediction - PvP - US</p>
+        <div className="container">
+          <p className='news-date'>Feb 23rd, 2020</p>
+        </div >
+        <img className='news-img' src={nef} alt='Screenshot of Aftermath posing in front of the corpse of Nefarian' />
+        <p className='news-p'>
+          The Lord of Blackrock Spire and son of Deathwing has been defeated. Epic cheers arose as his still body lay smoldering at our feet. &lt;Insert more RP text here&gt;
+      </p>
+        <p className='news-p'>
+          Great job everyone! Lot's of hard work put in with many consumes used! Got some great drops these first two weeks and looking forward to many more before Zul'Gurub!
+      </p>
+        <p className='news-p'>
+          We are looking for a few more good players to join our ranks (shaman and warlocks in particular.) Join our discord to find out more!
+      </p>
+        <div className='empty'></div>
         <p className='news-date'>Oct 27th, 2019</p>
       </div >
       <img className='news-img' src={rag} alt='Screenshot of Aftermath posing in front of the corpse of Ragnaros' />
