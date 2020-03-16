@@ -45,7 +45,7 @@ const Loot = () => {
     // Get the history data from the text, located in the fifth match
     const regex = /([^"])+/g;
     const arr = text.match(regex);
-    const dataArr = arr[4].split(',');
+    const dataArr = arr[4].split(/,(?! )/gm);
     // Split the array into chunks for each row
     const data = array_chunks(dataArr, 7);
     // Massage data so it can be consumed by table component
