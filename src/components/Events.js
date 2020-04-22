@@ -17,7 +17,7 @@ const Events = () => {
           scrolling="no" />
       </div>
       <div className="iframe-container">
-        <Iframe url="https://disweb.dashflo.net/channels/208267752140439552/631245510069583902"
+        <Iframe url="https://e.widgetbot.io/channels/208267752140439552/631245510069583902"
           width="100%"
           height="100%"
           id="myId"
