@@ -6,7 +6,7 @@ export const getSheetData = () => {
   return fetch(
     'https://docs.google.com/spreadsheets/d/e/2PACX-1vTScmdklpM8HplsoVyZzBgGcZT8LY0Dzw29EduKlZvhbwpmgdb7xjslxgR7xsHPYJlGrSrB7DR4h4Cs/pub?output=csv',
     {
-      mode: 'cors',
+      mode: 'no-cors',
       method: 'GET'
     }
   );
