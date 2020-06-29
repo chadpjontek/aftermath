@@ -47,6 +47,7 @@ const Dkp = () => {
         const fetchData = async () => {
           const response = await getSheetData();
           const text = await response.text();
+          console.log(text)
           dispatch({
             type: 'changeSheetData',
             newSheetData: text
