@@ -228,6 +228,12 @@ button:active {
   }
 }
 
+.link {
+  font-weight: bolder;
+  text-decoration: underline;
+  color: var(--light-color);
+}
+
 /* Less than 600 */
 @media screen and (max-width: 600px) {
 

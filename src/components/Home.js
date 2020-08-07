@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../images/aftermath-min.jpg';
 import rag from '../images/aftermath-one-shot-rag-min.jpg'
 import nef from '../images/aftermath-nef-down-min.jpg'
+import killLogs from '../images/killLogs.JPG'
 
 const Home = () => {
   return (
@@ -11,8 +12,20 @@ const Home = () => {
           <img src={logo} className="image" alt="aftermath logo" />
           <p className="h1-desc">Horde - Benediction - PvP - US</p>
         </div>
-        <p className='news-date'>Feb 23rd, 2020</p>
       </div >
+      <p className='news-date'>Aug 7th, 2020</p>
+      <a href='https://www.killlogs.com/'><img className='news-img' src={killLogs} alt='Kill Logs, real-time world PvP statistics for World of Warcraft Classic' /></a>
+      <p className='news-p'>
+      <a className='link' href='https://www.killlogs.com/'>Kill Logs</a> is a web site that provides real-time world PvP statistics for World of Warcraft Classic. It works much the same way as "Warcraftlogs" does by players uploading their kills through a client app while the site performs the visual display of the data. 
+      </p>
+      <p className='news-p'>
+      Besides statistics, there is a bounty system that promotes both bounty hunters and contractors through a reputation system. Additionally, I am working on <strong>Leaderboards</strong> and a <strong>Conquest</strong> system. This system will allow players to vote on zones to attack. Once a zone is declared attackable, a win condition will be set based on several factors. Guilds and factions will then be able to conquer these zones and place their mark on Azeroth.
+      </p>
+      <p className='news-p'>
+      This site was created out of a passion for the game and love of world PvP. I'm open to further suggestions so reach out if you have any and I'll try to get back with you ASAP! - Bone
+      </p>
+      <div className='empty'></div>
+      <p className='news-date'>Feb 23rd, 2020</p>
       <img className='news-img' src={nef} alt='Screenshot of Aftermath posing in front of the corpse of Nefarian' />
       <p className='news-p'>
         The Lord of Blackrock Spire and son of Deathwing has been defeated. Epic cheers arose as his still body lay smoldering at our feet. &lt;Insert more RP text here&gt;
