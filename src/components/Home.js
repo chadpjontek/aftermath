@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../images/aftermath-min.jpg';
 import rag from '../images/aftermath-one-shot-rag-min.jpg'
 import nef from '../images/aftermath-nef-down-min.jpg'
-import cthun from '../images/Cthun-min.jpg'
+import cthun from '../images/aftermath-cthun-down-min.png'
 import killLogs from '../images/killLogs.JPG'
 
 const Home = () => {
