@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../images/aftermath-min.jpg';
 import rag from '../images/aftermath-one-shot-rag-min.jpg'
 import nef from '../images/aftermath-nef-down-min.jpg'
-import cthun from '../images/aftermath-cthun-down-min.png'
+import cthun from '../images/aftermath-cthun-down-min.jpg'
 import killLogs from '../images/killLogs.JPG'
 
 const Home = () => {
@@ -20,7 +20,7 @@ const Home = () => {
       <blockquote className='center'>"Death is close..."- C'Thun's last words</blockquote>
       </p>
       <p className='news-p'>
-      39 unlikely heroes of Azeroth charged to their almost certain doom. Leading the charge, Trollgar sacrificed himself to the Old God so that we may bask in the glory of his shiny purple lootz. I'd like to thank all those that believed in our dream and stuck with us through the rough times. Love you all... UwU
+      39 unlikely heroes of Azeroth charged to their almost certain doom. Leading the charge, Trollgar immediately sacrificed himself to the Old God so that we may bask in the glory of his shiny purple lootz. I'd like to thank all those that believed in our dream and stuck with us through the rough times. Love you all... UwU
       </p>
       <div className='empty'></div>
       <p className='news-date'>Aug 7th, 2020</p>
