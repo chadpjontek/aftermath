@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../images/aftermath-min.jpg';
 import rag from '../images/aftermath-one-shot-rag-min.jpg'
 import nef from '../images/aftermath-nef-down-min.jpg'
+import cthun from '../images/Cthun-min.jpg'
 import killLogs from '../images/killLogs.JPG'
 
 const Home = () => {
@@ -13,6 +14,15 @@ const Home = () => {
           <p className="h1-desc">Horde - Benediction - PvP - US</p>
         </div>
       </div >
+      <p className='news-date'>Sep 11th, 2020</p>
+      <img className='news-img' src={cthun} alt="Aftermath guild posing in front of the corpse of C'thun" />
+      <p className='news-p'>
+      <blockquote className='center'>"Death is close..."- C'Thun's last words</blockquote>
+      </p>
+      <p className='news-p'>
+      39 unlikely heroes of Azeroth charged to their almost certain doom. Leading the charge, Trollgar sacrificed himself to the Old God so that we may bask in the glory of his shiny purple lootz. I'd like to thank all those that believed in our dream and stuck with us through the rough times. Love you all... UwU
+      </p>
+      <div className='empty'></div>
       <p className='news-date'>Aug 7th, 2020</p>
       <a href='https://www.killlogs.com/'><img className='news-img' src={killLogs} alt='Kill Logs, real-time world PvP statistics for World of Warcraft Classic' /></a>
       <p className='news-p'>
