@@ -10,7 +10,8 @@ const columns = ['player',
     name: "item",
     options: {
       customBodyRender: (value) => {
-        const valArr = value.split('-');
+        const re = /-(?!.*-)/
+        const valArr = value.split(re);
         return (
           <Link href={`https://classic.wowhead.com/item=${valArr[1]}`} data-wowhead={`item=${valArr[1]}`} className=''>
             {`${valArr[0]}`}
