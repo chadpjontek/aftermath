@@ -75,6 +75,7 @@ const Loot = () => {
     } else {
       // it hasn't so download the data and store in global state before formating
       try {
+        // eslint-disable-next-line no-unused-vars
         const fetchData = async () => {
           const response = await getSheetData();
           const text = await response.text();
