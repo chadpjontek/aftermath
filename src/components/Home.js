@@ -16,7 +16,9 @@ const Home = () => {
         </div>
       </div >
       <p className='news-date'>May 31st, 2021</p>
-      <img className='news-img' src={tbc} alt='TBC Dark Portal login screen with the words "TBC hype! TBC hype!"' />
+      <a href='https://youtu.be/nmIVwebeOWw'>
+        <img className='news-img' src={tbc} alt='TBC Dark Portal login screen with the words "TBC hype! TBC hype!"' />``
+      </a>
       <p className='news-p'>
       <blockquote className='center'>We're back!</blockquote>
       </p>
