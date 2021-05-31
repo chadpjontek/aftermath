@@ -3,6 +3,7 @@ import logo from '../images/aftermath-min.jpg';
 import rag from '../images/aftermath-one-shot-rag-min.jpg'
 import nef from '../images/aftermath-nef-down-min.jpg'
 import cthun from '../images/aftermath-cthun-down-min.jpg'
+import tbc from '../images/aftermath-tbc-min.jpg'
 import killLogs from '../images/killLogs.JPG'
 
 const Home = () => {
@@ -14,6 +15,15 @@ const Home = () => {
           <p className="h1-desc">Horde - Benediction - PvP - US</p>
         </div>
       </div >
+      <p className='news-date'>May 31st, 2021</p>
+      <img className='news-img' src={tbc} alt='TBC Dark Portal login screen with the words "TBC hype! TBC hype!"' />
+      <p className='news-p'>
+      <blockquote className='center'>We're back!</blockquote>
+      </p>
+      <p className='news-p'>
+      Getting the band back together and hopefully some new faces too. Can't wait to go through that portal again! <a href='https://youtu.be/nmIVwebeOWw' className='link'>TBC HYPE! TBC HYPE!</a> 
+      </p>
+      <div className='empty'></div>
       <p className='news-date'>Sep 11th, 2020</p>
       <img className='news-img' src={cthun} alt="Aftermath guild posing in front of the corpse of C'thun" />
       <p className='news-p'>

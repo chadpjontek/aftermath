@@ -66,7 +66,8 @@ const History = () => {
           });
           formatData(text);
         }
-        fetchData();
+        // TODO: need to create new way to import data
+        // fetchData();
 
       } catch (error) {
         throw error;

@@ -239,6 +239,10 @@ button:active {
   color: var(--light-color);
 }
 
+.link:hover {
+  color: var(--secondary-color);
+}
+
 /* Less than 600 */
 @media screen and (max-width: 600px) {
 
