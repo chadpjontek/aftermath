@@ -5,6 +5,7 @@ import nef from '../images/aftermath-nef-down-min.jpg'
 import cthun from '../images/aftermath-cthun-down-min.jpg'
 import tbc from '../images/aftermath-tbc-min.jpg'
 import killLogs from '../images/killLogs.JPG'
+import nightbane from '../images/nightbaneKill-min.jpg'
 
 const Home = () => {
   return (
@@ -15,9 +16,16 @@ const Home = () => {
           <p className="h1-desc">Horde - Benediction - PvP - US</p>
         </div>
       </div >
+      <p className='news-date'>July 1st, 2021</p>
+      <img className='news-img' src={nightbane} alt='Aftermath posing in front of the corpse of Nightbane.' />
+      <p className='news-p'>
+      <blockquote className='center'>You've got my attention, dragon.</blockquote>
+      </p>
+      <p className='news-p'>Well done on our first Nightbane kill! Not an easy fight in greens 😛  Onward to Gruul and Mag!</p>
+      <div className='empty'></div>
       <p className='news-date'>May 31st, 2021</p>
       <a href='https://youtu.be/nmIVwebeOWw'>
-        <img className='news-img' src={tbc} alt='TBC Dark Portal login screen with the words "TBC hype! TBC hype!"' />``
+        <img className='news-img' src={tbc} alt='TBC Dark Portal login screen with the words "TBC hype! TBC hype!"' />
       </a>
       <p className='news-p'>
       <blockquote className='center'>We're back!</blockquote>
