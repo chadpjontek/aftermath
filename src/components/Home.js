@@ -7,6 +7,7 @@ import cthun from '../images/aftermath-cthun-down-min.jpg'
 import tbc from '../images/aftermath-tbc-min.jpg'
 import killLogs from '../images/killLogs.JPG'
 import nightbane from '../images/nightbaneKill-min.jpg'
+import gruul from '../images/gruulKill-min.jpg'
 
 const Home = () => {
   return (
@@ -17,6 +18,13 @@ const Home = () => {
           <p className="h1-desc">Horde - Benediction - PvP - US</p>
         </div>
       </div >
+      <p className='news-date'>July 5th, 2021</p>
+      <img className='news-img' src={gruul} alt='Aftermath posing in front of the corpse of Gruul.' />
+      <p className='news-p'>
+      <blockquote className='center'>The Dragonkiller has been killed...</blockquote>
+      </p>
+      <p className='news-p'>Amazing job on Gruul tonight! One more boss to go... Magtheridon, we are coming for you!</p>
+      <div className='empty'></div>
       <p className='news-date'>July 1st, 2021</p>
       <img className='news-img' src={nightbane} alt='Aftermath posing in front of the corpse of Nightbane.' />
       <p className='news-p'>
