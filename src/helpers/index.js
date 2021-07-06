@@ -1,12 +1,11 @@
-var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-    targetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTScmdklpM8HplsoVyZzBgGcZT8LY0Dzw29EduKlZvhbwpmgdb7xjslxgR7xsHPYJlGrSrB7DR4h4Cs/pub?output=csv'
+var targetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTScmdklpM8HplsoVyZzBgGcZT8LY0Dzw29EduKlZvhbwpmgdb7xjslxgR7xsHPYJlGrSrB7DR4h4Cs/pub?output=csv'
 
 /**
  * Fetch the Google Sheets DKP data
  * @returns a promise for the string data
  */
 export const getSheetData = () => {
-  return fetch(proxyUrl + targetUrl,
+  return fetch(targetUrl,
     {
       mode: 'cors',
       method: 'GET'

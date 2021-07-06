@@ -30,6 +30,7 @@ const History = () => {
     // Get the history data from the text, located in the third match
     const regex = /([^"])+/g;
     const arr = text.match(regex);
+    if(!arr) return;
     const dataArr = arr[2].split(',');
 
     // Split the array into chunks for each row
@@ -67,8 +68,7 @@ const History = () => {
           });
           formatData(text);
         }
-        // TODO: need to create new way to import data
-        // fetchData();
+        fetchData();
 
       } catch (error) {
         throw error;

@@ -20,6 +20,7 @@ const Dkp = () => {
     const regex = /([^"])+/g;
     const arr = text.match(regex);
     // Massage data so it can be consumed by table component
+    if(!arr) return;
     const dataArr = arr[0].split(/\n/);
     const massagedData = [];
     for (const chunk of dataArr) {
@@ -55,7 +56,7 @@ const Dkp = () => {
           formatData(text);
         }
         // TODO: need to create new way to import data
-        // fetchData();
+        fetchData();
       } catch (error) {
         throw error;
       }

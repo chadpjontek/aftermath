@@ -46,6 +46,7 @@ const Loot = () => {
     // Get the history data from the text, located in the fifth match
     const regex = /([^"])+/g;
     const arr = text.match(regex);
+    if(!arr) return;
     const dataArr = arr[4].split(/,(?! )/gm);
     // Split the array into chunks for each row
     const data = array_chunks(dataArr, 7);
@@ -85,8 +86,7 @@ const Loot = () => {
           });
           formatData(text);
         }
-        // TODO: need to create new way to import data
-        // fetchData();
+        fetchData();
 
       } catch (error) {
         throw error;
