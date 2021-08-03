@@ -3,7 +3,7 @@ import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import { useStateValue } from '../helpers/stateManager';
-import { getSheetData, array_chunks } from '../helpers';
+import { getLoot, array_chunks } from '../helpers';
 
 const columns = ['player',
   {
@@ -47,6 +47,7 @@ const Loot = () => {
     const regex = /([^"])+/g;
     const arr = text.match(regex);
     if(!arr) return;
+    console.log(`arr`, arr)
     const dataArr = arr[4].split(/,(?! )/gm);
     // Split the array into chunks for each row
     const data = array_chunks(dataArr, 7);
@@ -67,33 +68,34 @@ const Loot = () => {
     }
     setLootData(massagedData);
   }
-  useEffect(() => {
-    // On first load of component,
-    // check and see if Google sheet data has previously been downloaded
-    if (sheetData !== '') {
-      // it has so format the data
-      formatData(sheetData);
-    } else {
-      // it hasn't so download the data and store in global state before formating
-      try {
-        // eslint-disable-next-line no-unused-vars
-        const fetchData = async () => {
-          const response = await getSheetData();
-          const text = await response.text();
-          dispatch({
-            type: 'changeSheetData',
-            newSheetData: text
-          });
-          formatData(text);
-        }
-        fetchData();
+  // TODO: needs updated 
+  // useEffect(() => {
+  //   // On first load of component,
+  //   // check and see if Google sheet data has previously been downloaded
+  //   if (sheetData !== '') {
+  //     // it has so format the data
+  //     formatData(sheetData);
+  //   } else {
+  //     // it hasn't so download the data and store in global state before formating
+  //     try {
+  //       // eslint-disable-next-line no-unused-vars
+  //       const fetchData = async () => {
+  //         const response = await getLoot();
+  //         const text = await response.text();
+  //         dispatch({
+  //           type: 'changeSheetData',
+  //           newSheetData: text
+  //         });
+  //         formatData(text);
+  //       }
+  //       fetchData();
 
-      } catch (error) {
-        throw error;
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //     } catch (error) {
+  //       throw error;
+  //     }
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const getMuiTheme = () => createMuiTheme({
     overrides: {
@@ -197,7 +199,7 @@ const Loot = () => {
   })
   return (
     <div className='container'>
-      <MuiThemeProvider theme={getMuiTheme()}>
+      {/* <MuiThemeProvider theme={getMuiTheme()}>
         <MUIDataTable
           className='dkp-table'
           title={"Aftermath DKP"}
@@ -205,7 +207,13 @@ const Loot = () => {
           columns={columns}
           options={options}
         />
-      </MuiThemeProvider>
+      </MuiThemeProvider> */}
+      <div style={{
+        color: 'white',
+        padding: '30px',
+        textAlign: 'center',
+        fontSize: '24px'
+      }}>UNDER CONSTRUCTION</div>
     </div>
   );
 };

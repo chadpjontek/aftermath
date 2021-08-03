@@ -8,6 +8,7 @@ import tbc from '../images/aftermath-tbc-min.jpg'
 import killLogs from '../images/killLogs.JPG'
 import nightbane from '../images/nightbaneKill-min.jpg'
 import gruul from '../images/gruulKill-min.jpg'
+import mag from '../images/magKill-min.jpg'
 
 const Home = () => {
   return (
@@ -18,6 +19,13 @@ const Home = () => {
           <p className="h1-desc">Horde - Benediction - PvP - US</p>
         </div>
       </div >
+      <p className='news-date'>July 29th, 2021</p>
+      <img className='news-img' src={mag} alt='Aftermath posing in front of the corpse of Magtheridon.' />
+      <p className='news-p'>
+      <blockquote className='center'>Vermin! Leeches! Take my blood and choke on it!</blockquote>
+      </p>
+      <p className='news-p'>Phase 1 complete! We couldn't have done it without our level 69 ret paladin, Guldanshwr. Grats on Glaive of the Pit btw. Maybe you'll be able to equip if for our next kill? 😛 Now it's time to prep for Vash and Kael'thas...</p>
+      <div className='empty'></div>
       <p className='news-date'>July 5th, 2021</p>
       <img className='news-img' src={gruul} alt='Aftermath posing in front of the corpse of Gruul.' />
       <p className='news-p'>

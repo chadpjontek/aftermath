@@ -24,10 +24,20 @@ function App() {
   // Change the state based on the action
   const reducer = (state, action) => {
     switch (action.type) {
-      case 'changeSheetData':
+      case 'changeDkpSheetData':
         return {
           ...state,
-          sheetData: action.newSheetData
+          dkpSheetData: action.newDkpSheetData
+        };
+      case 'changeHistorySheetData':
+        return {
+          ...state,
+          historySheetData: action.newHistorySheetData
+        };
+      case 'changeLootSheetData':
+        return {
+          ...state,
+          lootSheetData: action.newLootSheetData
         };
 
       default:

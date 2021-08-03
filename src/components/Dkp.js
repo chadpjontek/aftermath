@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { useStateValue } from '../helpers/stateManager';
-import { getSheetData } from '../helpers';
+import { getDkp } from '../helpers';
 
 const columns = ['player', 'class', 'dkp']
 
@@ -12,50 +12,43 @@ const options = {
 }
 
 const Dkp = () => {
-  const [{ sheetData }, dispatch] = useStateValue();
+  const [{ dkpSheetData }, dispatch] = useStateValue();
   const [dkpData, setDkpData] = useState([]);
 
   const formatData = (text) => {
-    // Get the dkp data from the text, located in the first match
-    const regex = /([^"])+/g;
-    const arr = text.match(regex);
-    // Massage data so it can be consumed by table component
-    if(!arr) return;
-    const dataArr = arr[0].split(/\n/);
-    const massagedData = [];
-    for (const chunk of dataArr) {
-      const re = /([^,])+/g;
-      const chunkArr = chunk.match(re);
-      const firstVals = chunkArr.slice(0, 2);
-      const dkpVal = chunkArr.slice(2);
-      // Convert dkp values from str to int
-      const intVal = parseInt(dkpVal[0]);
-      const concatVals = firstVals.concat(intVal);
-      massagedData.push(concatVals);
+    console.log(`text`, text)
+    const splitTextArr = text.split(/\r?\n|\r/g);
+    const data = [];
+    for (let i = 0; i < splitTextArr.length; i++) {
+      const line = splitTextArr[i];
+      if(i!==0) {
+        const arr = line.split(',').splice(0,3)
+        data.push(arr);
+      }
     }
-    setDkpData(massagedData);
+    setDkpData(data)
   }
 
   useEffect(() => {
     // On first load of component,
     // check and see if Google sheet data has previously been downloaded
-    if (sheetData !== '') {
+    if (dkpSheetData && dkpSheetData !== '') {
       // it has so format the data
-      formatData(sheetData);
+      console.log(`dkpSheetData`, dkpSheetData)
+      formatData(dkpSheetData);
     } else {
-      // it hasn't so download the data and store in global state before formating
+      // it hasn't so download the data and store in global state before formatting
       try {
         // eslint-disable-next-line no-unused-vars
         const fetchData = async () => {
-          const response = await getSheetData();
+          const response = await getDkp();
           const text = await response.text();
           dispatch({
-            type: 'changeSheetData',
-            newSheetData: text
+            type: 'changeDkpSheetData',
+            newDkpSheetData: text
           });
           formatData(text);
         }
-        // TODO: need to create new way to import data
         fetchData();
       } catch (error) {
         throw error;

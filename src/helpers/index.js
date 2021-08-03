@@ -1,11 +1,40 @@
-var targetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTScmdklpM8HplsoVyZzBgGcZT8LY0Dzw29EduKlZvhbwpmgdb7xjslxgR7xsHPYJlGrSrB7DR4h4Cs/pub?output=csv'
+// var targetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTAJN5UbCNe5CxHhtF9rump8-Y-f3DXFQSlwVvjbwvC-l-hzlw5DpbrzHDUQdUdavKNwdGK8Un1LelR/pub?output=csv'
+const dkpUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTAJN5UbCNe5CxHhtF9rump8-Y-f3DXFQSlwVvjbwvC-l-hzlw5DpbrzHDUQdUdavKNwdGK8Un1LelR/pub?gid=0&single=true&output=csv'
+const lootUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTAJN5UbCNe5CxHhtF9rump8-Y-f3DXFQSlwVvjbwvC-l-hzlw5DpbrzHDUQdUdavKNwdGK8Un1LelR/pub?gid=1655191196&single=true&output=csv'
+const historyUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTAJN5UbCNe5CxHhtF9rump8-Y-f3DXFQSlwVvjbwvC-l-hzlw5DpbrzHDUQdUdavKNwdGK8Un1LelR/pub?gid=735447977&single=true&output=csv'
 
 /**
  * Fetch the Google Sheets DKP data
  * @returns a promise for the string data
  */
-export const getSheetData = () => {
-  return fetch(targetUrl,
+export const getDkp = () => {
+  return fetch(dkpUrl,
+    {
+      mode: 'cors',
+      method: 'GET'
+    }
+  );
+};
+
+/**
+ * Fetch the Google Sheets DKP data
+ * @returns a promise for the string data
+ */
+export const getLoot = () => {
+  return fetch(lootUrl,
+    {
+      mode: 'cors',
+      method: 'GET'
+    }
+  );
+};
+
+/**
+ * Fetch the Google Sheets DKP data
+ * @returns a promise for the string data
+ */
+export const getHistory = () => {
+  return fetch(historyUrl,
     {
       mode: 'cors',
       method: 'GET'
