@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
@@ -76,7 +77,7 @@ const Loot = () => {
   //     // it has so format the data
   //     formatData(sheetData);
   //   } else {
-  //     // it hasn't so download the data and store in global state before formating
+  //     // it hasn't so download the data and store in global state before formatting
   //     try {
   //       // eslint-disable-next-line no-unused-vars
   //       const fetchData = async () => {
